@@ -1,0 +1,30 @@
+{
+  "name": "ai-document-intelligence",
+  "version": "1.0.0",
+  "description": "AI-powered document processing, analysis, and Q&A system",
+  "private": true,
+  "scripts": {
+    "setup": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ..",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "keywords": [
+    "ai",
+    "document-processing",
+    "rag",
+    "langchain",
+    "react",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
