@@ -103,6 +103,8 @@ This starts the backend, frontend, and PostgreSQL services together.
 - If uploads or chat fail, verify the selected AI provider has available credits and a valid API key.
 - If port 3000 or 5000 is already in use, stop the conflicting service or change the port settings.
 
+If you find this project useful, please consider giving it a star and sharing it with others—your support helps improve and maintain the project.
+
 ## Project Structure
 - [backend](backend) – Express server, document processing, embeddings, and RAG logic
 - [frontend](frontend) – React UI for uploading documents and chatting
