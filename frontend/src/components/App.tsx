@@ -22,13 +22,17 @@ export const App: React.FC = () => {
       <header className="app-header">
         <div className="header-content">
           <h1>🔍 AI Document Intelligence</h1>
-          <p>Upload documents and ask AI questions about them</p>
+          <p>Upload documents, search their meaning, and ask grounded AI questions</p>
         </div>
       </header>
 
       <main className="app-main">
         {!documentId ? (
           <div className="upload-section">
+            <div className="intro-copy">
+              <h2>Chat with your documents using RAG</h2>
+              <p>Turn PDFs, DOCX files, and text documents into a searchable AI knowledge base with semantic search and retrieval-augmented generation.</p>
+            </div>
             <FileUpload onUploadSuccess={handleUploadSuccess} />
           </div>
         ) : (

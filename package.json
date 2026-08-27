@@ -1,7 +1,7 @@
 {
   "name": "ai-document-intelligence",
   "version": "1.0.0",
-  "description": "AI-powered document processing, analysis, and Q&A system",
+  "description": "Open-source AI document Q&A and semantic search platform with RAG, embeddings, React, Node.js, PostgreSQL, and pgvector",
   "private": true,
   "scripts": {
     "setup": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ..",
@@ -23,8 +23,16 @@
     "rag",
     "langchain",
     "react",
-    "nodejs"
+    "nodejs",
+    "typescript",
+    "openai",
+    "anthropic",
+    "postgresql",
+    "pgvector",
+    "semantic-search",
+    "document-ai",
+    "question-answering"
   ],
-  "author": "Your Name",
+  "author": "AI Document Intelligence contributors",
   "license": "MIT"
 }
