@@ -7,7 +7,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](backend/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-pgvector-4169E1?logo=postgresql&logoColor=white)](docker-compose.yml)
 
-Badges: add CI, coverage, and GitHub stars badges at the top of this README after you transfer the repository to GitHub. Example badge URLs use your GitHub `owner/repo` path.
+Tip: add badges for CI, coverage, license, and GitHub stars at the top of this README. Use badge image URLs that reference your GitHub owner/repo (replace `owner/repo` with your repository path).
 
 AI Document Intelligence is a full-stack document question-answering system. Upload PDF, DOCX, or TXT files, transform them into searchable chunks and embeddings, then use retrieval-augmented generation (RAG) to ask questions about the source material. It supports Anthropic Claude and OpenAI providers and runs locally with Docker, React, Node.js, Express, PostgreSQL, and pgvector.
 

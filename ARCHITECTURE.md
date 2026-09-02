@@ -4,13 +4,13 @@ This document describes the high-level architecture of the AI Document Intellige
 
 ```mermaid
 flowchart TD
-  Browser[Browser / Frontend]
-  Frontend[React App]
-  Backend[Express API]
-  DB[PostgreSQL + pgvector]
-  Storage[Uploads (local or S3)]
-  Embeddings[Embeddings Service]
-  LLM[LLM Providers (OpenAI / Anthropic)]
+  Browser["Browser / Frontend"]
+  Frontend["React App"]
+  Backend["Express API"]
+  DB["PostgreSQL + pgvector"]
+  Storage["Uploads (local or S3)"]
+  Embeddings["Embeddings Service"]
+  LLM["LLM Providers (Anthropic / OpenAI)"]
 
   Browser --> Frontend --> Backend
   Backend --> Storage
