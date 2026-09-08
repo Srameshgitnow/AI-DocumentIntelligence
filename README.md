@@ -23,6 +23,16 @@ This screenshot shows the application running with the sample company profile do
 
 ![Upload document and ask a question](docs/images/app-upload.png)
 
+#### Question flow walkthrough
+
+![Question flow 1](docs/images/question%20flow1.png)
+
+![Question flow 2](docs/images/question%20flow2.png)
+
+![Question flow 3](docs/images/question%20flow3.png)
+
+![Question flow 4](docs/images/question%20flow4.png)
+
 ## Security
 
 This repository previously contained committed API keys; those keys have been removed from tracked files. If you cloned the repository earlier, rotate any exposed keys and follow the guidance in [SECURITY.md](SECURITY.md).
