@@ -19,12 +19,26 @@ app.use(
   })
 );
 
+// Ensure preflight requests are handled
+app.options('*', cors());
+
+// Simple request logger to help debug upload/CORS issues
+app.use((req, _res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Debug endpoint to inspect headers and CORS behavior from the browser
+app.get('/api/debug', (req, res) => {
+  res.json({ headers: req.headers, origin: req.get('origin') || null });
 });
 
 // Routes

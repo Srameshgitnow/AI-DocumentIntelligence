@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 import { DocumentLoader, TextSplitter } from '../services/documentProcessor';
 import { EmbeddingsService } from '../services/embeddingsService';
+import { query } from '../db/connection';
 
 const router = Router();
 const localDocuments: Array<{ id: string; title: string; fileName: string; filePath: string; fileType: string; fileSize: number; content: string }> = [];
@@ -34,14 +35,19 @@ const upload = multer({
     fileSize: parseInt(process.env.MAX_FILE_SIZE || '52428800'),
   },
   fileFilter: (_req: Request, file: Express.Multer.File, cb: (error: Error | null, acceptFile?: boolean) => void) => {
-    const allowedTypes = [
+    const allowedMimeTypes = new Set([
       'application/pdf',
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'application/msword',
       'text/plain',
-    ];
+      'application/octet-stream',
+    ]);
 
-    if (allowedTypes.includes(file.mimetype)) {
+    const extension = path.extname(file.originalname).toLowerCase();
+    const isAllowedExtension = ['.pdf', '.doc', '.docx', '.txt'].includes(extension);
+    const isAllowedMime = allowedMimeTypes.has(file.mimetype.toLowerCase());
+
+    if (isAllowedExtension || isAllowedMime) {
       cb(null, true);
     } else {
       cb(new Error('Invalid file type'));
@@ -76,6 +82,29 @@ router.post('/upload', upload.single('file'), async (req: RequestWithFile, res: 
       fileSize: req.file.size,
       content: content.text,
     });
+
+    // Persist the document to the database so later retrieval and chat history can reference it.
+    await query(
+      `INSERT INTO documents (id, title, file_name, file_path, file_type, file_size, content)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       ON CONFLICT (id) DO UPDATE SET
+         title = EXCLUDED.title,
+         file_name = EXCLUDED.file_name,
+         file_path = EXCLUDED.file_path,
+         file_type = EXCLUDED.file_type,
+         file_size = EXCLUDED.file_size,
+         content = EXCLUDED.content,
+         updated_at = CURRENT_TIMESTAMP`,
+      [
+        documentId,
+        req.body.title || req.file.originalname,
+        req.file.originalname,
+        req.file.path,
+        fileType,
+        req.file.size,
+        content.text,
+      ]
+    );
 
     // Split text into chunks
     const splitter = new TextSplitter(

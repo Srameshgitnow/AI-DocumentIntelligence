@@ -24,7 +24,7 @@ export class RAGService {
 
         this.llm = new ChatAnthropic({
           anthropicApiKey: process.env.ANTHROPIC_API_KEY,
-          model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-latest',
+          model: process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6',
           temperature: 0.7,
         });
       } else {

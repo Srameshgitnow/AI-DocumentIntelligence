@@ -1,0 +1,23 @@
+Company Profile
+
+Company Name: NovaWorks Technologies
+Industry: Software and AI Solutions
+Location: London, United Kingdom
+Founded: 2020
+
+About the company:
+NovaWorks Technologies is a UK-based software and AI solutions company that helps businesses automate workflows, process documents, and improve customer support with modern AI tools.
+
+The company focuses on three main services:
+1. AI document processing and automation
+2. Retrieval-augmented generation for enterprise search
+3. Business intelligence dashboards and internal knowledge systems
+
+Key clients:
+- Fintech startups
+- Legal document processing teams
+- Healthcare operations teams
+- Logistics and supply chain businesses
+
+Vision:
+NovaWorks aims to make advanced AI accessible to businesses that want to improve productivity, reduce manual work, and use data more effectively.

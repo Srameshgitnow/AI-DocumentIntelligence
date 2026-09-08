@@ -13,6 +13,16 @@ AI Document Intelligence is a full-stack document question-answering system. Upl
 
 If this project helps you build an AI document chatbot, private knowledge base, semantic search tool, or RAG prototype, **please star the repository**. Stars help other developers discover the project and guide future development.
 
+## Demo
+
+This screenshot shows the application running with the sample company profile document and a real Q&A exchange from the uploaded text.
+
+![AI Document Intelligence demo](docs/images/app-demo-final.png)
+
+### Upload and question flow
+
+![Upload document and ask a question](docs/images/app-upload.png)
+
 ## Security
 
 This repository previously contained committed API keys; those keys have been removed from tracked files. If you cloned the repository earlier, rotate any exposed keys and follow the guidance in [SECURITY.md](SECURITY.md).
@@ -73,7 +83,7 @@ DB_PASSWORD=postgres
 
 LLM_PROVIDER=anthropic
 ANTHROPIC_API_KEY=your_claude_key_here
-ANTHROPIC_MODEL=claude-3-5-sonnet-latest
+ANTHROPIC_MODEL=claude-sonnet-4-6
 OPENAI_API_KEY=your_openai_key_here
 ```
 

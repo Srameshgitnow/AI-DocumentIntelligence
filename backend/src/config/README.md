@@ -20,7 +20,7 @@ See [backend/.env.example](backend/.env.example) for all available options.
 - `PORT` - Server port (default: 5000)
 - `CORS_ORIGIN` - CORS origin for frontend (default: http://localhost:3000)
 - `NODE_ENV` - Environment mode (development/production)
-- `ANTHROPIC_MODEL` - Claude model name (default: claude-3-5-sonnet-latest)
+- `ANTHROPIC_MODEL` - Claude model name (default: claude-sonnet-4-6)
 
 ## Frontend Configuration (.env)
 

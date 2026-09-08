@@ -43,12 +43,34 @@ export class DocumentLoader {
 
   async loadTxt(filePath: string): Promise<DocumentContent> {
     try {
-      const text = fs.readFileSync(filePath, 'utf-8');
+      const fileBuffer = fs.readFileSync(filePath);
+      let text = fileBuffer.toString('utf-8');
+
+      if (fileBuffer.length >= 2 && fileBuffer[0] === 0xff && fileBuffer[1] === 0xfe) {
+        text = fileBuffer.toString('utf16le');
+      } else if (fileBuffer.length >= 2 && fileBuffer[0] === 0xfe && fileBuffer[1] === 0xff) {
+        const swapped = Buffer.alloc(fileBuffer.length);
+        for (let i = 0; i < fileBuffer.length; i += 2) {
+          if (i + 1 < fileBuffer.length) {
+            swapped[i] = fileBuffer[i + 1];
+            swapped[i + 1] = fileBuffer[i];
+          }
+        }
+        text = swapped.toString('utf16le');
+      } else if (fileBuffer.includes(0)) {
+        const sample = fileBuffer.slice(0, Math.min(fileBuffer.length, 64));
+        const nullCount = sample.reduce((count, byte) => count + (byte === 0 ? 1 : 0), 0);
+        if (nullCount > sample.length * 0.2) {
+          text = fileBuffer.toString('utf16le');
+        }
+      }
+
+      text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
       return {
         text,
         metadata: {
-          encoding: 'utf-8',
+          encoding: fileBuffer.includes(0) ? 'utf-16' : 'utf-8',
         },
       };
     } catch (error) {
