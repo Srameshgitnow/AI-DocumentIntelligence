@@ -19,7 +19,7 @@ This screenshot shows the application running with the sample company profile do
 
 ![AI Document Intelligence demo](docs/images/app-demo-final.png)
 
-### Upload and question flow
+### Upload and question flow 
 
 ![Upload document and ask a question](docs/images/app-upload.png)
 
