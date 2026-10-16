@@ -9,11 +9,6 @@
 
 AI Document Intelligence is a full-stack document Q&A system for developers who want to upload files, retrieve the most relevant passages, and ask grounded questions without building a custom RAG pipeline from scratch. It works with PDFs, DOCX, and TXT files and supports both Anthropic Claude and OpenAI.
 
-If this project helps you, please star the repository. It helps others discover the project and keeps momentum going for future improvements.
-
-- “If you find this useful, star it on GitHub”
-- “Feedback welcome in GitHub issues”
-
 ## Star if you find this useful!
 
 If this project saved you time or helped you prototype an AI document assistant, please give it a star on GitHub. Every star helps more developers discover the project and supports future work.
