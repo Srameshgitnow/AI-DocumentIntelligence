@@ -11,9 +11,14 @@ AI Document Intelligence is a full-stack document Q&A system for developers who 
 
 If this project helps you, please star the repository. It helps others discover the project and keeps momentum going for future improvements.
 
+- “If you find this useful, star it on GitHub”
+- “Feedback welcome in GitHub issues”
+
 ## Star if you find this useful!
 
 If this project saved you time or helped you prototype an AI document assistant, please give it a star on GitHub. Every star helps more developers discover the project and supports future work.
+
+Feedback welcome in GitHub issues.
 
 ## Why this project exists
 
@@ -220,3 +225,6 @@ This project is licensed under the [MIT License](LICENSE).
 ## Star if you find this useful!
 
 If this project helped you prototype or ship an AI document assistant, a star would be a great way to support it. Thank you for supporting open-source AI work.
+
+- “If you find this useful, star it on GitHub”
+- “Feedback welcome in GitHub issues”
