@@ -1,59 +1,73 @@
 # AI Document Intelligence Platform
 
-> Upload documents, search their meaning, and ask grounded questions with an open-source RAG application built for developers.
+> Turn long documents into searchable, question-answering knowledge using a local RAG stack built with React, Node.js, PostgreSQL, and AI models.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](frontend/)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](backend/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-pgvector-4169E1?logo=postgresql&logoColor=white)](docker-compose.yml)
 
-Tip: add badges for CI, coverage, license, and GitHub stars at the top of this README. Use badge image URLs that reference your GitHub owner/repo (replace `owner/repo` with your repository path).
+AI Document Intelligence is a full-stack document Q&A system for developers who want to upload files, retrieve the most relevant passages, and ask grounded questions without building a custom RAG pipeline from scratch. It works with PDFs, DOCX, and TXT files and supports both Anthropic Claude and OpenAI.
 
-AI Document Intelligence is a full-stack document question-answering system. Upload PDF, DOCX, or TXT files, transform them into searchable chunks and embeddings, then use retrieval-augmented generation (RAG) to ask questions about the source material. It supports Anthropic Claude and OpenAI providers and runs locally with Docker, React, Node.js, Express, PostgreSQL, and pgvector.
+If this project helps you, please star the repository. It helps others discover the project and keeps momentum going for future improvements.
 
-If this project helps you build an AI document chatbot, private knowledge base, semantic search tool, or RAG prototype, **please star the repository**. Stars help other developers discover the project and guide future development.
+## Star if you find this useful!
+
+If this project saved you time or helped you prototype an AI document assistant, please give it a star on GitHub. Every star helps more developers discover the project and supports future work.
+
+## Why this project exists
+
+Most organizations have valuable information trapped inside PDFs, contracts, reports, and internal notes. Standard document search often misses context or returns irrelevant snippets. This project solves that by combining:
+
+- document ingestion and parsing
+- chunking and embedding generation
+- semantic retrieval from PostgreSQL with pgvector
+- LLM-powered question answering grounded in the source document
+
+## What it does
+
+This app lets you:
+
+- upload PDF, DOCX, and TXT files
+- extract and clean the text from each document
+- split documents into searchable chunks
+- generate embeddings and store them in PostgreSQL
+- ask natural-language questions about the uploaded content
+- compare or switch between Anthropic Claude and OpenAI providers
+- run the full stack locally with Docker or direct Node development
+
+### Example workflow
+
+1. Upload a company profile, contract, or research document.
+2. The backend parses the file and creates embeddings.
+3. The app retrieves the most relevant passages.
+4. The model answers with references grounded in the source material.
 
 ## Demo
 
-This screenshot shows the application running with the sample company profile document and a real Q&A exchange from the uploaded text.
+This project includes a working UI and example document flows. The screenshots below show the app in action.
 
 ![AI Document Intelligence demo](docs/images/app-demo-final.png)
 
-### Upload and question flow 
-
 ![Upload document and ask a question](docs/images/app-upload.png)
 
-#### Question flow walkthrough
+### Question flow walkthrough
 
 ![Question flow 1](docs/images/question%20flow1.png)
-
 ![Question flow 2](docs/images/question%20flow2.png)
-
 ![Question flow 3](docs/images/question%20flow3.png)
-
 ![Question flow 4](docs/images/question%20flow4.png)
-
-## Security
-
-This repository previously contained committed API keys; those keys have been removed from tracked files. If you cloned the repository earlier, rotate any exposed keys and follow the guidance in [SECURITY.md](SECURITY.md).
-
-## Why use it?
-
-- **Ask instead of scan:** get answers from long documents in seconds.
-- **Grounded retrieval:** semantic search finds relevant passages before generation.
-- **Developer-friendly:** TypeScript services, a React interface, and Docker setup.
-- **Provider choice:** use Anthropic Claude or OpenAI through configuration.
-- **Self-hostable foundation:** keep your documents and database in your own environment.
 
 ## Features
 
-- Upload PDF, DOCX, and TXT documents
-- Extract, clean, and split document content into chunks
-- Generate embeddings and store them in PostgreSQL with pgvector
-- Ask natural-language questions with retrieval-augmented generation
-- Switch between Anthropic Claude and OpenAI
-- View chat history for each uploaded document
-- Run the complete stack locally with Docker Compose
+- Upload PDF, DOCX, DOC, and TXT files
+- Parse documents with a document ingestion pipeline
+- Convert content into embeddings using OpenAI or Anthropic-backed workflows
+- Store searchable vector data in PostgreSQL + pgvector
+- Use retrieval-augmented generation (RAG) for grounded Q&A
+- Search and retrieve the most relevant document chunks
+- Keep the app self-hosted and customizable for private data
+- Run the full stack locally with Docker Compose or npm scripts
 
 ## Tech stack
 
@@ -63,18 +77,36 @@ This repository previously contained committed API keys; those keys have been re
 | Backend | Node.js 18+, Express, TypeScript, LangChain |
 | AI | Anthropic Claude and OpenAI embeddings/chat |
 | Data | PostgreSQL 16 and pgvector |
-| Operations | Docker Compose, dotenv, ts-node |
+| DevOps | Docker Compose, dotenv, ts-node |
 
 ## Quick start
 
-## Prerequisites
-Before running the app locally, make sure you have:
+### Prerequisites
+
+Before running the project locally, make sure you have:
+
 - Node.js 18+ and npm 9+
 - PostgreSQL 16+ running locally
-- A PostgreSQL database named ai_doc_intelligence
-- An Anthropic Claude API key or OpenAI API key with available credits
+- A database named `ai_doc_intelligence`
+- An Anthropic API key or OpenAI API key with available credits
 
-## Environment configuration
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+cd backend && npm install
+cd ../frontend && npm install
+```
+
+### 3. Configure environment variables
+
 Create the backend environment file from the example template:
 
 ```bash
@@ -82,7 +114,13 @@ cd backend
 copy .env.example .env
 ```
 
-Then update [backend/.env](backend/.env) with the correct values:
+On macOS/Linux:
+
+```bash
+cp .env.example .env
+```
+
+Then update [backend/.env](backend/.env) with your settings:
 
 ```env
 DB_HOST=localhost
@@ -97,36 +135,33 @@ ANTHROPIC_MODEL=claude-sonnet-4-6
 OPENAI_API_KEY=your_openai_key_here
 ```
 
-> Both OpenAI and Anthropic require billing/credits enabled for the API calls used by embeddings and chat generation.
+> Both OpenAI and Anthropic require valid billing or credits enabled for embeddings and chat generation.
 
-## Local development
-### 1. Install dependencies
-```bash
-npm install
-cd backend && npm install
-cd ../frontend && npm install
-```
+### 4. Start PostgreSQL
 
-### 2. Start PostgreSQL
-Make sure PostgreSQL is running and the database credentials in [backend/.env](backend/.env) match your local setup.
+Make sure PostgreSQL is running and the credentials in [backend/.env](backend/.env) match your local database setup.
 
-### 3. Start the backend
+### 5. Run the app
+
+Start the backend in one terminal:
+
 ```bash
 cd backend
 npm run dev
 ```
 
-### 4. Start the frontend
-In a second terminal:
+Start the frontend in another terminal:
+
 ```bash
 cd frontend
 npm start
 ```
 
-Open http://localhost:3000 in your browser.
+Then open http://localhost:3000
 
-## Docker run
-If you prefer Docker:
+### Docker option
+
+If you prefer the full stack in Docker:
 
 ```bash
 docker compose up --build
@@ -134,15 +169,16 @@ docker compose up --build
 
 This starts the backend, frontend, and PostgreSQL services together.
 
-## How to test
-1. Upload a small PDF, DOCX, or TXT file.
-2. Wait for the document to be processed.
-3. Ask a question about the uploaded document.
-4. Confirm that the answer appears and the chat history is stored.
+## How to use it
 
-## API Usage Examples
+1. Upload a PDF, DOCX, or TXT document.
+2. Wait for ingestion and embedding generation.
+3. Ask a question about the file.
+4. Review the answer grounded in the document content.
 
-Upload a document (multipart/form-data):
+## API examples
+
+Upload a document:
 
 ```bash
 curl -v -F "file=@/path/to/mydoc.pdf" -F "title=My Doc" http://localhost:5000/api/documents/upload
@@ -152,22 +188,35 @@ Ask a question about a document:
 
 ```bash
 curl -v -X POST http://localhost:5000/api/chat \
-	-H "Content-Type: application/json" \
-	-d '{"documentId":"<DOCUMENT_ID>", "question":"Summarize the introduction."}'
+  -H "Content-Type: application/json" \
+  -d '{"documentId":"<DOCUMENT_ID>","question":"Summarize the introduction."}'
 ```
 
 ## Troubleshooting
-- If the backend fails to start, check the PostgreSQL connection settings in [backend/.env](backend/.env).
-- If uploads or chat fail, verify the selected AI provider has available credits and a valid API key.
-- If port 3000 or 5000 is already in use, stop the conflicting service or change the port settings.
 
-## Contributing and support
+- If the backend fails to start, check the PostgreSQL connection values in [backend/.env](backend/.env).
+- If document processing fails, confirm your API key and provider configuration are correct.
+- If ports 3000 or 5000 are already in use, stop the conflicting services or change the port settings.
 
-Bug reports, feature requests, documentation improvements, and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. For the project’s discoverability and content strategy, see [SEO.md](SEO.md).
+## Security
 
-If you find this project useful, please [star the repository](../../stargazers) and share it with developers working on document AI, semantic search, or RAG applications.
+This repository previously contained committed API keys; those keys were removed from tracked files. If you cloned an older version of the repository, rotate any leaked keys and follow the guidance in [SECURITY.md](SECURITY.md).
 
-## Project Structure
-- [backend](backend) – Express server, document processing, embeddings, and RAG logic
-- [frontend](frontend) – React UI for uploading documents and chatting
-- [docker-compose.yml](docker-compose.yml) – Local containerized setup for app + database
+## Project structure
+
+- [backend](backend) – Express API, document ingestion, embeddings, and retrieval logic
+- [frontend](frontend) – React interface for upload, chat, and document interaction
+- [docker-compose.yml](docker-compose.yml) – local container setup for app + database
+- [SECURITY.md](SECURITY.md) – security and key-rotation guidance
+
+## Contributing
+
+Contributions are welcome. Bug reports, ideas, documentation improvements, and pull requests are all appreciated. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Star if you find this useful!
+
+If this project helped you prototype or ship an AI document assistant, a star would be a great way to support it. Thank you for supporting open-source AI work.
